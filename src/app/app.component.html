@@ -1,0 +1,22 @@
+<form class="number-input" #form="ngForm">
+  <div class="number-input" *ngIf="!contentVisible">
+    <p>zadejte pocet karticek</p>
+    <input type="number" name="number" id="quantity" [(ngModel)]="number" required [appMin]="2" [appMax]="26" #numberEl="ngModel">
+    <div *ngIf="numberEl.invalid && numberEl.touched">
+      <span *ngIf="numberEl.errors.min" class="minLength">
+        Minimální číslo smí být 2 a větší!!!!!😳😳😳😳😳😳😳😳😳😳😳
+      </span>
+      <span *ngIf="numberEl.errors.max" class="maxLength">
+        Maximální číslo smí být 26!!!!!!😳😳😳😳😳😳😳😳
+      </span>
+    </div>
+    <div class="button">
+      <button type="button" class="btn btn-secondary" (click)="clickedButton()" [disabled]="form.invalid">Submit</button>
+    </div>
+  </div>
+</form>
+<div *ngIf="contentVisible">
+  <div *ngFor="let karticka of karticky" class="border p-2 m-4" (click)="otocit(karticka)">
+    <span class="item animate__animated animate__flipInY" *ngIf="karticka.otoceno">{{karticka.icon}}</span>
+  </div>
+</div>
